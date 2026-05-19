@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windscreen Warranty & Repair Support | Autoglass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ag-blue:        #003087;
+    --ag-blue-mid:    #0051CC;
+    --ag-blue-light:  #E8F0FB;
+    --ag-yellow:      #FFD000;
+    --ag-yellow-dark: #C9A200;
+    --ag-dark:        #0D1B2A;
+    --ag-mid:         #3D5166;
+    --ag-muted:       #6B7D8E;
+    --ag-border:      #D4DCE6;
+    --ag-bg:          #F5F8FC;
+    --ag-white:       #FFFFFF;
+    --ag-green:       #1A7A4A;
+    --ag-red:         #C0392B;
+    --ag-amber:       #D97706;
+
+    --radius:   10px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 4px rgba(0,30,87,.08);
+    --shadow:    0 4px 20px rgba(0,30,87,.10);
+    --shadow-lg: 0 12px 48px rgba(0,30,87,.14);
+
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body:    'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--ag-bg);
+    color: var(--ag-dark);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────────────────────── */
+  .nav {
+    background: var(--ag-blue);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,30,87,.25);
+  }
+  .nav-inner {
+    max-width: 1140px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 62px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
+  }
+  .nav-logo-badge {
+    background: var(--ag-yellow);
+    color: var(--ag-blue);
+    font-weight: 700; font-size: 15px; letter-spacing: .5px;
+    padding: 6px 12px; border-radius: 6px;
+    font-family: var(--font-display);
+  }
+  .nav-logo-sub {
+    color: rgba(255,255,255,.75);
+    font-size: 12px; font-weight: 400; letter-spacing: .4px;
+  }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    color: rgba(255,255,255,.82);
+    text-decoration: none; font-size: 13.5px; font-weight: 500;
+    padding: 6px 14px; border-radius: 6px;
+    transition: all .18s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,.12); color: #fff; }
+  .nav-links a.active { color: #fff; background: rgba(255,255,255,.15); }
+  .nav-cta {
+    background: var(--ag-yellow); color: var(--ag-blue);
+    font-weight: 700; font-size: 13.5px;
+    padding: 8px 18px; border-radius: 8px; text-decoration: none;
+    transition: background .18s, transform .12s;
+  }
+  .nav-cta:hover { background: #ffe033; transform: translateY(-1px); }
+
+  /* ── HERO ─────────────────────────────────────────────────────────────── */
+  .hero {
+    background: var(--ag-blue);
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    max-width: 1140px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 0;
+    min-height: 420px;
+  }
+  .hero-content { padding: 60px 40px 60px 24px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,208,0,.15); border: 1px solid rgba(255,208,0,.3);
+    color: var(--ag-yellow); font-size: 12px; font-weight: 600;
+    letter-spacing: .8px; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ag-yellow); display: block;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 46px);
+    color: #fff; line-height: 1.15; margin-bottom: 18px;
+  }
+  .hero h1 em { font-style: italic; color: var(--ag-yellow); }
+  .hero p {
+    color: rgba(255,255,255,.80); font-size: 16px; line-height: 1.65;
+    max-width: 420px; margin-bottom: 32px;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ag-yellow); color: var(--ag-blue);
+    font-weight: 700; font-size: 14.5px;
+    padding: 12px 24px; border-radius: 8px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all .18s; border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #ffe033; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+  .btn-secondary {
+    background: transparent; color: #fff;
+    font-weight: 600; font-size: 14.5px;
+    padding: 12px 24px; border-radius: 8px; border: 1.5px solid rgba(255,255,255,.35);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all .18s; cursor: pointer;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.08); }
+
+  .hero-image {
+    position: relative; height: 420px; overflow: hidden;
+  }
+  .hero-image img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center;
+  }
+  .hero-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--ag-blue) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .hero-image-badge {
+    position: absolute; bottom: 20px; right: 20px; z-index: 2;
+    background: rgba(13,27,42,.85); backdrop-filter: blur(8px);
+    color: #fff; padding: 10px 16px; border-radius: 10px;
+    font-size: 12px; font-weight: 500; line-height: 1.4;
+    border: 1px solid rgba(255,255,255,.1);
+  }
+  .hero-image-badge strong { display: block; font-size: 16px; font-weight: 700; color: var(--ag-yellow); }
+
+  /* ── TRUST BAR ────────────────────────────────────────────────────────── */
+  .trust-bar {
+    background: var(--ag-dark);
+    padding: 0;
+  }
+  .trust-bar-inner {
+    max-width: 1140px; margin: 0 auto;
+    display: flex; align-items: stretch;
+  }
+  .trust-item {
+    flex: 1; padding: 18px 24px;
+    display: flex; align-items: center; gap: 14px;
+    border-right: 1px solid rgba(255,255,255,.08);
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon {
+    font-size: 22px; flex-shrink: 0;
+    width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,208,0,.12); border-radius: 8px;
+  }
+  .trust-label { color: rgba(255,255,255,.5); font-size: 11px; text-transform: uppercase; letter-spacing: .6px; }
+  .trust-value { color: #fff; font-size: 14px; font-weight: 600; margin-top: 2px; }
+
+  /* ── SECTIONS ──────────────────────────────────────────────────────────── */
+  .section { padding: 72px 24px; }
+  .section-inner { max-width: 1140px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--ag-blue-mid);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 36px);
+    color: var(--ag-dark); line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .section-lead {
+    color: var(--ag-mid); font-size: 16px; max-width: 600px; line-height: 1.65;
+    margin-bottom: 48px;
+  }
+
+  /* ── ISSUE CARDS ───────────────────────────────────────────────────────── */
+  .issues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .issue-card {
+    background: var(--ag-white);
+    border: 1px solid var(--ag-border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: all .22s;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+  }
+  .issue-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--ag-blue-mid);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .25s;
+  }
+  .issue-card:hover { border-color: transparent; box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .issue-card:hover::before { transform: scaleX(1); }
+
+  .issue-icon {
+    font-size: 28px; margin-bottom: 14px;
+    width: 52px; height: 52px;
+    background: var(--ag-blue-light);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .issue-card h3 {
+    font-size: 16px; font-weight: 600; color: var(--ag-dark);
+    margin-bottom: 8px;
+  }
+  .issue-card p {
+    font-size: 13.5px; color: var(--ag-muted); line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  .issue-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 20px;
+  }
+  .tag-covered {
+    background: #E8F5EE; color: var(--ag-green);
+  }
+  .tag-investigate {
+    background: #FEF3E2; color: var(--ag-amber);
+  }
+  .tag-not-covered {
+    background: #FDECEA; color: var(--ag-red);
+  }
+  .tag-covered::before { content: '✓'; }
+  .tag-investigate::before { content: '?'; }
+  .tag-not-covered::before { content: '✕'; }
+
+  /* ── PROCESS STEPS ─────────────────────────────────────────────────────── */
+  .steps-section { background: var(--ag-blue); }
+  .steps-section .section-label { color: rgba(255,208,0,.9); }
+  .steps-section .section-title { color: #fff; }
+  .steps-section .section-lead { color: rgba(255,255,255,.70); }
+
+  .steps-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    position: relative;
+  }
+  .steps-row::before {
+    content: '';
+    position: absolute; top: 28px; left: 12.5%; right: 12.5%;
+    height: 2px; background: rgba(255,208,0,.25);
+    z-index: 0;
+  }
+  .step {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: var(--radius-lg);
+    padding: 28px 22px;
+    position: relative; z-index: 1;
+    text-align: center;
+    transition: background .2s;
+  }
+  .step:hover { background: rgba(255,255,255,.10); }
+  .step-num {
+    width: 44px; height: 44px;
+    background: var(--ag-yellow); color: var(--ag-blue);
+    border-radius: 50%; font-weight: 800; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .step h4 { color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .step p { color: rgba(255,255,255,.65); font-size: 13px; line-height: 1.55; }
+
+  /* ── PHOTO STRIP ───────────────────────────────────────────────────────── */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+  .photo-strip-item {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    background: #c5d5e8;
+  }
+  .photo-strip-item img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform .4s;
+  }
+  .photo-strip-item:hover img { transform: scale(1.04); }
+  .photo-strip-item:first-child { grid-row: span 2; min-height: 340px; }
+  .photo-strip-item:not(:first-child) { min-height: 160px; }
+  .photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 10px 14px;
+    background: linear-gradient(to top, rgba(0,30,87,.75) 0%, transparent 100%);
+    color: rgba(255,255,255,.90); font-size: 12px; font-weight: 500;
+  }
+
+  /* ── COVERAGE TABLE ─────────────────────────────────────────────────────── */
+  .coverage-section { background: #fff; }
+  .coverage-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .coverage-col h3 {
+    font-size: 15px; font-weight: 700;
+    padding: 12px 18px; border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .coverage-col.green h3 { background: #E8F5EE; color: var(--ag-green); }
+  .coverage-col.red h3   { background: #FDECEA; color: var(--ag-red); }
+  .coverage-list { list-style: none; }
+  .coverage-list li {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px; color: var(--ag-mid);
+    display: flex; align-items: flex-start; gap: 10px;
+    margin-bottom: 4px;
+    transition: background .15s;
+  }
+  .coverage-list li:hover { background: var(--ag-bg); }
+  .coverage-list li::before {
+    flex-shrink: 0; margin-top: 2px;
+    font-size: 13px; font-weight: 700;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .coverage-col.green .coverage-list li::before {
+    content: '✓'; background: #E8F5EE; color: var(--ag-green);
+  }
+  .coverage-col.red .coverage-list li::before {
+    content: '✕'; background: #FDECEA; color: var(--ag-red);
+  }
+
+  /* ── FAQ ───────────────────────────────────────────────────────────────── */
+  .faq-list { max-width: 780px; }
+  .faq-item {
+    border: 1px solid var(--ag-border);
+    border-radius: var(--radius);
+    margin-bottom: 8px; background: #fff;
+    overflow: hidden; transition: box-shadow .18s;
+  }
+  .faq-item:hover { box-shadow: var(--shadow-sm); }
+  .faq-q {
+    padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    cursor: pointer; user-select: none;
+    font-weight: 600; font-size: 14.5px; color: var(--ag-dark);
+    list-style: none;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-arrow {
+    flex-shrink: 0; width: 28px; height: 28px;
+    background: var(--ag-blue-light); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ag-blue-mid); font-size: 14px; font-weight: 700;
+    transition: transform .2s, background .2s;
+  }
+  details[open] .faq-arrow { transform: rotate(45deg); background: var(--ag-blue-mid); color: #fff; }
+  .faq-a {
+    padding: 0 22px 18px;
+    font-size: 14px; color: var(--ag-muted); line-height: 1.65;
+    border-top: 1px solid var(--ag-border);
+    padding-top: 14px;
+  }
+
+  /* ── CTA BAND ──────────────────────────────────────────────────────────── */
+  .cta-band {
+    background: linear-gradient(135deg, var(--ag-blue) 0%, var(--ag-blue-mid) 100%);
+    padding: 64px 24px;
+  }
+  .cta-band-inner {
+    max-width: 1140px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+    flex-wrap: wrap;
+  }
+  .cta-band h2 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 36px);
+    color: #fff; margin-bottom: 8px;
+  }
+  .cta-band p { color: rgba(255,255,255,.72); font-size: 15px; max-width: 460px; }
+  .cta-band-actions { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+  .btn-white {
+    background: #fff; color: var(--ag-blue);
+    font-weight: 700; font-size: 14.5px;
+    padding: 13px 26px; border-radius: 8px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all .18s; border: none; cursor: pointer;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,.2); }
+  .btn-outline-white {
+    background: transparent; color: #fff;
+    font-weight: 600; font-size: 14.5px;
+    padding: 13px 26px; border-radius: 8px; border: 1.5px solid rgba(255,255,255,.45);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all .18s; cursor: pointer;
+  }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,.9); background: rgba(255,255,255,.08); }
+
+  /* ── FOOTER ────────────────────────────────────────────────────────────── */
+  .footer {
+    background: var(--ag-dark);
+    padding: 48px 24px 28px;
+    color: rgba(255,255,255,.55);
+  }
+  .footer-inner {
+    max-width: 1140px; margin: 0 auto;
+    display: flex; justify-content: space-between; gap: 40px;
+    flex-wrap: wrap; padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    margin-bottom: 24px;
+  }
+  .footer-brand .nav-logo-badge { font-size: 18px; }
+  .footer-brand p { margin-top: 12px; font-size: 13px; max-width: 240px; line-height: 1.6; }
+  .footer-col h4 { color: rgba(255,255,255,.75); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; margin-bottom: 14px; }
+  .footer-col a { display: block; color: rgba(255,255,255,.5); text-decoration: none; font-size: 13.5px; margin-bottom: 8px; transition: color .15s; }
+  .footer-col a:hover { color: rgba(255,255,255,.9); }
+  .footer-bottom {
+    max-width: 1140px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; flex-wrap: wrap; gap: 8px;
+  }
+
+  /* ── DIGITAL INTERCEPT ZONE ─────────────────────────────────────────────── */
+  /* This empty div is the intended mount point for chat / nudge widgets */
+  #digital-intercept-zone {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    /* Intercept widget injects here */
+  }
+
+  /* ── UTILITIES ─────────────────────────────────────────────────────────── */
+  .divider { border: none; border-top: 1px solid var(--ag-border); margin: 0; }
+
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-image { height: 220px; }
+    .hero-image::after { background: linear-gradient(to top, var(--ag-blue) 0%, transparent 50%); }
+    .trust-bar-inner { flex-direction: column; }
+    .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .steps-row { grid-template-columns: 1fr 1fr; }
+    .steps-row::before { display: none; }
+    .photo-strip { grid-template-columns: 1fr; }
+    .photo-strip-item:first-child { grid-row: span 1; }
+    .coverage-grid { grid-template-columns: 1fr; }
+    .cta-band-inner { flex-direction: column; }
+    .footer-inner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ─────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-badge">Autoglass®</span>
+      <span class="nav-logo-sub">Part of Belron Group</span>
+    </a>
+    <div class="nav-links">
+      <a href="#">Book a Repair</a>
+      <a href="#">Chip Repair</a>
+      <a href="#warranty" class="active">Warranty</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+    <a href="#book" class="nav-cta">Book Now →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Warranty Repair Support</div>
+      <h1>Something not right after your <em>replacement?</em></h1>
+      <p>Your Autoglass workmanship guarantee has you covered. If you're experiencing water ingress, wind noise, or any concern after your windscreen replacement, we'll put it right — fast, free, and without the hassle.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn-primary">Book a Return Visit →</a>
+        <a href="#issues" class="btn-secondary">What's Covered?</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1651084296894-105edab05b26?w=900&q=80&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Autoglass technician fitting a windscreen" loading="eager"
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1526459915562-c5ca724b1d02?w=900&q=80&auto=format&fit=crop&ixlib=rb-4.1.0'">
+      <div class="hero-image-badge">
+        <strong>Lifetime Guarantee</strong>
+        on all workmanship
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ──────────────────────────────────────────────────────────── -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div>
+        <div class="trust-label">Guarantee</div>
+        <div class="trust-value">Lifetime workmanship warranty</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📅</div>
+      <div>
+        <div class="trust-label">Return Visits</div>
+        <div class="trust-value">Booked within 3 working days</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🚗</div>
+      <div>
+        <div class="trust-label">Service</div>
+        <div class="trust-value">Mobile or branch — your choice</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⭐</div>
+      <div>
+        <div class="trust-label">Trustpilot</div>
+        <div class="trust-value">4.7 / 5 · Over 180,000 reviews</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PHOTO STRIP + INTRO ────────────────────────────────────────────────── -->
+<section class="section coverage-section" id="warranty">
+  <div class="section-inner">
+    <div class="photo-strip">
+      <div class="photo-strip-item">
+        <img src="https://images.unsplash.com/photo-1651084296928-93292998d0af?w=800&q=80&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Technician carefully removing old windscreen">
+        <div class="photo-caption">Precision removal — protecting your bodywork</div>
+      </div>
+      <div class="photo-strip-item">
+        <img src="https://images.unsplash.com/photo-1526459915562-c5ca724b1d02?w=500&q=80&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Applying urethane adhesive bead">
+        <div class="photo-caption">Urethane adhesive application</div>
+      </div>
+      <div class="photo-strip-item">
+        <img src="https://images.unsplash.com/photo-1529695269502-04a09469a588?w=500&q=80&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Quality check on fitted windscreen">
+        <div class="photo-caption">Post-fit quality inspection</div>
+      </div>
+    </div>
+
+    <div class="section-label">Your Guarantee</div>
+    <h2 class="section-title">We stand behind every fitting</h2>
+    <p class="section-lead">Every windscreen replacement carried out by Autoglass comes with a lifetime workmanship guarantee. If anything with the fitting isn't right — water ingress, wind noise, trim problems — a return visit is free of charge.</p>
+
+    <div class="coverage-grid">
+      <div class="coverage-col green">
+        <h3>✓ &nbsp;Covered by your guarantee</h3>
+        <ul class="coverage-list">
+          <li>Water ingress traced to the screen seal or sealant</li>
+          <li>Wind noise or whistling from glass seating or trim</li>
+          <li>Adhesive bond failures (glass movement after cure)</li>
+          <li>Incorrect glass specification fitted</li>
+          <li>ADAS camera / sensor calibration not completed</li>
+          <li>Interior trim or A-pillar damage caused during fitting</li>
+          <li>Optical distortion or haze introduced during installation</li>
+          <li>Rear-view mirror bracket or wiring disturbed by technician</li>
+        </ul>
+      </div>
+      <div class="coverage-col red">
+        <h3>✕ &nbsp;Not covered by the guarantee</h3>
+        <ul class="coverage-list">
+          <li>Stone chips or cracks occurring after the replacement</li>
+          <li>Water leaks from door seals, sunroofs, or body channels</li>
+          <li>Pre-existing corrosion in the screen aperture</li>
+          <li>Wiper blade wear or wiper arm damage</li>
+          <li>Damage caused by jet washing within 48 hours of fit</li>
+          <li>ADAS recalibration needed after a subsequent collision</li>
+          <li>Thermal cracking from pouring hot water on frozen glass</li>
+          <li>Tint variation within manufacturer tolerances</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── COMMON ISSUES ──────────────────────────────────────────────────────── -->
+<section class="section" id="issues">
+  <div class="section-inner">
+    <div class="section-label">Common Post-Fit Issues</div>
+    <h2 class="section-title">What are customers reporting?</h2>
+    <p class="section-lead">These are the most common reasons customers get in touch after a windscreen replacement. Click any issue to book a return visit.</p>
+
+    <div class="issues-grid">
+
+      <div class="issue-card" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+        <div class="issue-icon">💧</div>
+        <h3>Water Ingress / Damp Interior</h3>
+        <p>Wet carpet, damp headlining, or water dripping from the screen edge after rain or a car wash — usually caused by an incomplete sealant bead during fitting.</p>
+        <span class="issue-tag tag-covered">Covered by guarantee</span>
+      </div>
+
+      <div class="issue-card" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+        <div class="issue-icon">🌬️</div>
+        <h3>Wind Noise / Whistling at Speed</h3>
+        <p>A whistle or rushing sound above 50–60 mph that wasn't there before. Often linked to A-pillar trim not fully clipped back, or glass not fully seated in the dam.</p>
+        <span class="issue-tag tag-covered">Covered by guarantee</span>
+      </div>
+
+      <div class="issue-card" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+        <div class="issue-icon">⚠️</div>
+        <h3>ADAS Warning Light On</h3>
+        <p>Lane keep assist, emergency braking, or forward collision warning lights illuminated since the replacement. Calibration may not have completed correctly.</p>
+        <span class="issue-tag tag-covered">Covered by guarantee</span>
+      </div>
+
+      <div class="issue-card" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+        <div class="issue-icon">🔍</div>
+        <h3>Optical Distortion or Haze</h3>
+        <p>Blurring, waviness, or an internal smear that can't be cleaned. May indicate a manufacturing issue with the glass, or residue from the installation process.</p>
+        <span class="issue-tag tag-covered">Covered by guarantee</span>
+      </div>
+
+      <div class="issue-card" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+        <div class="issue-icon">🪟</div>
+        <h3>Wrong Tint or Glass Spec</h3>
+        <p>The new screen looks noticeably different — a different tint, no heating elements, or missing the acoustic layer your vehicle originally had.</p>
+        <span class="issue-tag tag-covered">Covered by guarantee</span>
+      </div>
+
+      <div class="issue-card" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+        <div class="issue-icon">🪛</div>
+        <h3>Trim or Dashboard Damage</h3>
+        <p>Cracked A-pillar trim, a broken sun visor clip, or adhesive residue on your dashboard noticed after the technician's visit.</p>
+        <span class="issue-tag tag-covered">Covered by guarantee</span>
+      </div>
+
+      <div class="issue-card" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+        <div class="issue-icon">🔩</div>
+        <h3>Adhesive Concerns</h3>
+        <p>Visible black sealant appearing at the screen edge days after the fit, or the screen appearing to flex when closing the door firmly.</p>
+        <span class="issue-tag tag-investigate">Inspect first</span>
+      </div>
+
+      <div class="issue-card">
+        <div class="issue-icon">💥</div>
+        <h3>New Stone Chip or Crack</h3>
+        <p>Impact damage that occurred after your replacement — this is not covered by the workmanship guarantee, but may be covered by your motor insurance policy.</p>
+        <span class="issue-tag tag-not-covered">Not covered — check insurance</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS STEPS ──────────────────────────────────────────────────────── -->
+<section class="section steps-section" id="book">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title" style="color:#fff">Booking a return visit is simple</h2>
+    <p class="section-lead">We aim to resolve every warranty concern quickly and without fuss. Here's what happens when you get in touch.</p>
+
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Tell Us What's Happening</h4>
+        <p>Describe the issue — water, noise, warning light, or anything else. We'll ask a few quick questions to triage the problem.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>We Book Your Return Visit</h4>
+        <p>A technician appointment is arranged within 3 working days, at your home, work, or a local branch — free of charge.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Technician Inspects & Fixes</h4>
+        <p>The technician inspects the fitting, confirms the cause, and carries out the repair or re-fit during the same visit where possible.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>All Clear — Back on the Road</h4>
+        <p>We confirm the repair is complete and follow up to make sure you're satisfied. No further charge if it's workmanship-related.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ────────────────────────────────────────────────────────────────── -->
+<section class="section" style="background:#fff;" id="faq">
+  <div class="section-inner">
+    <div class="section-label">FAQs</div>
+    <h2 class="section-title">Questions customers often ask</h2>
+    <p class="section-lead">Can't find your answer here? Our team is available 7 days a week.</p>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          How long does the Autoglass workmanship guarantee last?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">Your workmanship guarantee lasts for the lifetime of your vehicle ownership and is transferable to a private buyer. It covers any defect arising from the fitting process itself. The adhesive bond is separately guaranteed for a minimum of 12 months, and ADAS calibration for 6 months or 6,000 miles (whichever is sooner).</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          I noticed water coming in two weeks after my replacement — is it still covered?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">Yes — the timeframe doesn't automatically disqualify a claim. Our technician will inspect the source of the leak. If it's traced to the screen seal or sealant, it's covered regardless of how long after the fit it appeared. If it's traced to door seals, sunroof drainage, or a pre-existing body issue, we'll explain the cause and signpost you to the right help.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          There's a wind whistle above 60 mph that wasn't there before. What should I do?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">Book a return visit. Wind noise at motorway speeds is one of the most common post-fit issues we see, and it's almost always down to A-pillar trim not being fully re-clipped, or the glass not being fully seated in the dam. A technician will inspect and refit the trim or re-seat the glass at no charge. Please don't accept being told that "some noise is normal" — it isn't, and we'll fix it.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          My lane assist warning light came on after the replacement. Is this covered?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">Yes — if your vehicle has ADAS features (lane keep assist, automatic emergency braking, adaptive cruise control), the camera or sensor mounted to or near your windscreen may need recalibration after replacement. If this wasn't completed or completed incorrectly, it's covered by your guarantee. Please treat this as urgent and contact us as soon as possible, and avoid relying on ADAS-dependent features until the system is confirmed as calibrated.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          I jet-washed my car the day after my replacement. Could this be the cause of a leak?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">It's possible — the urethane adhesive needs at least 48 hours before exposure to a pressure washer or jet wash. Our technician will inspect and advise. If the jet wash has displaced partially-cured sealant, the situation can still be rectified, but the cause will be noted on your job record. In future, standard car washing is fine after 24 hours; jet washing should be avoided for 48 hours post-fit.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          The new screen looks like a different shade of green/blue to my other windows. Is this normal?
+          <span class="faq-arrow">+</span>
+        </summary>
+        <div class="faq-a">Minor tint variation between glass panels on the same vehicle is common and falls within manufacturer tolerances — this is a glass product characteristic, not a fitting issue. However, if your vehicle should have had acoustic glass, a specific solar or privacy tint, or a heated windscreen and the wrong specification was fitted, this is covered and we will replace the glass with the correct specification at no charge. Contact us with your vehicle registration and we'll verify the spec on your job record.</div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ────────────────────────────────────────────────────────────── -->
+<section class="cta-band" id="contact">
+  <div class="cta-band-inner">
+    <div>
+      <h2>Ready to book your return visit?</h2>
+      <p>Our team is available 7 days a week, 8am–8pm. Most return visits are booked within 3 working days — often sooner.</p>
+    </div>
+    <div class="cta-band-actions">
+      <a href="#" class="btn-white">📞 &nbsp;Call 0800 500 0000</a>
+      <a href="#" class="btn-outline-white">Book Online →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="nav-logo-badge" style="font-family: 'DM Serif Display', serif;">Autoglass®</span>
+      <p>The UK's leading windscreen repair and replacement specialist. Part of the Belron Group, operating in over 35 countries worldwide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Windscreen Replacement</a>
+      <a href="#">Chip Repair</a>
+      <a href="#">ADAS Calibration</a>
+      <a href="#">Van & Commercial</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Warranty & Repairs</a>
+      <a href="#">Insurance Claims</a>
+      <a href="#">Find a Branch</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Autoglass</a>
+      <a href="#">About Belron</a>
+      <a href="#">Careers</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Autoglass Limited. Registered in England & Wales. Part of Belron International Ltd.</span>
+    <span>Demo page — for internal presentation purposes only</span>
+  </div>
+</footer>
+
+<!-- ── DIGITAL INTERCEPT MOUNT POINT ─────────────────────────────────────── -->
+<!--
+  INTERCEPT ZONE
+  ══════════════
+  The div below (#digital-intercept-zone) is the designated mount point
+  for digital intercept widgets (live chat nudges, proactive messaging,
+  survey prompts, co-browsing invites, etc).
+
+  To inject a widget, target: document.getElementById('digital-intercept-zone')
+  or use the data attributes on key sections for trigger-based intercepts:
+
+    data-intercept="warranty-hero"    → fire on hero scroll-into-view
+    data-intercept="issue-card"       → fire on issue card click
+    data-intercept="faq-open"         → fire on FAQ expand
+    data-intercept="cta-band"         → fire on CTA band scroll-into-view
+
+  Page-level metadata for intercept targeting:
+    page_type:    warranty-support
+    page_intent:  post-replacement-concern
+    brand:        autoglass
+    product:      windscreen-replacement
+-->
+<div id="digital-intercept-zone" aria-label="Customer support widget" role="complementary"></div>
+
+<script>
+  // ── Smooth scroll for anchor links ──────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // ── Intercept trigger events (for integration) ───────────────────────
+  // Dispatches custom events that intercept platforms can listen for.
+  const dispatchIntercept = (trigger, data = {}) => {
+    window.dispatchEvent(new CustomEvent('autoglass:intercept', { detail: { trigger, ...data, timestamp: Date.now() } }));
+  };
+
+  // Trigger: user clicks an issue card
+  document.querySelectorAll('.issue-card').forEach(card => {
+    card.addEventListener('click', () => {
+      dispatchIntercept('issue-card-click', { issue: card.querySelector('h3')?.textContent });
+    });
+  });
+
+  // Trigger: user expands an FAQ
+  document.querySelectorAll('.faq-item').forEach(faq => {
+    faq.addEventListener('toggle', () => {
+      if (faq.open) dispatchIntercept('faq-open', { question: faq.querySelector('.faq-q')?.textContent?.trim() });
+    });
+  });
+
+  // Trigger: scroll-based — user reaches the issue section
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        dispatchIntercept(e.target.dataset.intercept, { section: e.target.id });
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.35 });
+
+  ['warranty', 'issues', 'faq', 'contact'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.dataset.intercept = id + '-visible'; observer.observe(el); }
+  });
+
+  // ── Example: listen for intercept events (remove in production) ───────
+  window.addEventListener('autoglass:intercept', e => {
+    console.log('[Autoglass Intercept]', e.detail);
+  });
+</script>
+
+</body>
+</html>
